@@ -1,0 +1,57 @@
+{
+  "_note": "Synthetic example, not real data. Illustrates one resolveCitation-style call for the book-form fallback path described in SKILL.md and README.md. Provider name, catalog id, and URL are all fabricated for illustration.",
+  "input": {
+    "query": "Fenwick, Alden. The Grammar of Ordinary Belief. Cambridge: Cambridge University Press, 1988.",
+    "options": {
+      "timeoutMs": 8000
+    }
+  },
+  "classification": {
+    "shape": "book",
+    "reason": "publisher/imprint marker ('Press') present, no quoted title, no journal-venue marker"
+  },
+  "providerOrder": [
+    "example-book-catalog-a",
+    "example-book-catalog-b",
+    "example-open-works-index",
+    "example-doi-index"
+  ],
+  "providerCalls": [
+    {
+      "provider": "example-book-catalog-a",
+      "queryText": "Fenwick, Alden, The Grammar of Ordinary Belief 1988",
+      "candidatesReturned": 5,
+      "candidatesConsidered": [
+        { "title": "An Introduction to Ordinary Language Philosophy", "overlapScore": 0.18 },
+        { "title": "Belief, Grammar, and Doubt in Analytic Philosophy", "overlapScore": 0.29 },
+        { "title": "The Grammar of Ordinary Belief", "overlapScore": 0.83 },
+        { "title": "Ordinary Objects and Their Discontents", "overlapScore": 0.11 },
+        { "title": "A Companion to Belief-Talk", "overlapScore": 0.14 }
+      ],
+      "threshold": 0.5,
+      "matched": true,
+      "matchedCandidateIndex": 2,
+      "note": "Best-of-5 scan, not top-1: the winning candidate ranked 3rd in the provider's own result order but had the highest title-overlap score in the window."
+    }
+  ],
+  "result": {
+    "provider": "example-book-catalog-a",
+    "identifiers": {
+      "doi": null,
+      "isbn": null,
+      "providerWorkId": "OL-SYN-001W"
+    },
+    "title": "The Grammar of Ordinary Belief",
+    "authors": ["Alden Fenwick"],
+    "year": 1988,
+    "url": "https://example-catalog.test/works/OL-SYN-001W",
+    "availability": "metadata-only",
+    "providerResponse": {
+      "_note": "kept for audit only; never read directly by downstream code",
+      "providerTitle": "The Grammar of Ordinary Belief",
+      "providerAuthorField": "Alden Fenwick"
+    }
+  },
+  "remainingProvidersCalled": [],
+  "shortCircuited": true
+}
