@@ -37,22 +37,35 @@ It does not ship a client library for Crossref/OpenAlex/Google
 Books/Open Library specifically — it teaches the pattern so you can wire
 up whichever metadata providers your own project actually needs.
 
-## Installation
+## Works with
 
-This is a portable **Agent Skill** — a `SKILL.md` file plus supporting
-docs, following the emerging `SKILL.md` convention used by Claude Code
-and compatible agent runtimes. To install it:
+| Surface | How | Status |
+|---|---|---|
+| Claude Code | native skill (`SKILL.md`) | not tested |
+| Codex | native skill via `.agents/skills` | not tested |
+| Gemini CLI | native skill via `.agents/skills`, pointer in `GEMINI.md` | not tested |
+| Cursor | native skill via `.agents/skills`, `AGENTS.md` | not tested |
+| Copilot | pointer to `AGENTS.md` | not tested |
+| ChatGPT / Claude.ai / Gemini (chat) | prompt (`PROMPT.md`) | not tested |
 
-1. Copy this whole folder into your project's skills directory —
-   `.claude/skills/scholarly-metadata-resolution-pattern/` for Claude
-   Code, or the equivalent skills directory for any other agent runtime
-   that supports the `SKILL.md` convention.
-2. The agent will pick it up automatically the next time a task matches
-   the skill's description (resolving a citation string to canonical
-   metadata across multiple providers).
+## Quick start
 
-No dependencies, no build step, no scripts to run — this skill is pure
-methodology and reference material.
+No dependencies and no build step: the skill is methodology and reference
+material.
+
+```sh
+git clone https://github.com/hyderhusainarastu/scholarly-metadata-resolution-pattern
+cd scholarly-metadata-resolution-pattern
+./install.sh --claude              # ~/.claude/skills/scholarly-metadata-resolution-pattern
+./install.sh --agents --project .  # .agents/skills (Codex, Cursor, Gemini CLI)
+./install.sh --gemini --project .  # pointer block in GEMINI.md
+./install.sh --copilot --project . # pointer block in .github/copilot-instructions.md
+```
+
+Run `./install.sh` with no flags to see help and detected tools. Add
+`--dry-run` to preview, `--copy` to copy instead of symlink, and
+`--uninstall` to remove only what the installer created. For chat UIs, paste
+`PROMPT.md`.
 
 ## Worked example (synthetic data)
 
@@ -111,6 +124,25 @@ See `SKILL.md` for the full pattern (interface, ordering rules, guard
 logic, etiquette, and orchestration pseudocode) and `examples/` for the
 synthetic input/output pair above in file form.
 
+## Limits
+
+Pseudocode and methodology only; there is no client library. Results depend
+on the coverage and rate limits of the providers you wire up. Locus-style
+citations (numbered classical passages) are deliberately left unresolved.
+
+## Related
+
+- [scholarly-citation-resolver](https://github.com/hyderhusainarastu/scholarly-citation-resolver): runnable reference implementation of this pattern.
+- [hallucinated-citation-checker](https://github.com/hyderhusainarastu/hallucinated-citation-checker): flags citations that do not resolve to a real record.
+- [quote-verification-toolkit](https://github.com/hyderhusainarastu/quote-verification-toolkit): verifies quoted text against sources.
+
+## Keywords
+
+crossref, openalex, google books, open library, citation resolution, DOI, ISBN, bibliographic metadata, hallucination prevention, agent skill
+
 ## License
 
 MIT — see `LICENSE`.
+
+---
+Part of palimnote-skills - more at https://github.com/hyderhusainarastu

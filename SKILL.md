@@ -1,6 +1,6 @@
 ---
 name: scholarly-metadata-resolution-pattern
-description: Resolves a free-text bibliographic citation (author/title/year, possibly OCR-noisy) into verified canonical metadata by querying multiple free, keyless scholarly-metadata APIs (Crossref, OpenAlex, Google Books, Open Library) behind one adapter interface, with citation-form-aware provider ordering, a title-overlap confidence guard, and provider etiquette. Invoke this skill when building or fixing any pipeline that must attach real title/author/year/identifier metadata to a raw citation string or reference list — and especially when the goal is "never let a model invent a bibliographic fact, only attach a fact that a real lookup actually returned."
+description: Resolves a noisy free-text citation into verified metadata via Crossref, OpenAlex, Google Books and Open Library behind one adapter interface, with form-aware provider ordering and a title-overlap guard. Use when a pipeline must attach real bibliographic facts, never model-invented ones.
 ---
 
 # Scholarly Metadata Resolution Pattern
